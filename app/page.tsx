@@ -1,91 +1,57 @@
-const stars = Array.from({ length: 42 }, (_, index) => ({
-  left: `${(index * 37) % 97}%`, top: `${(index * 53) % 91}%`,
-  delay: `${(index % 9) * 0.35}s`, size: `${2 + (index % 3)}px`,
+const snow = Array.from({ length: 58 }, (_, i) => ({
+  left: `${(i * 43) % 100}%`, size: `${3 + (i % 5)}px`,
+  delay: `${(i % 13) * -0.8}s`, duration: `${10 + (i % 8)}s`,
 }));
 
-const toc = [['01', '关于我'], ['02', '最近文章'], ['03', '精选项目']];
+const nav = [['⌂', '首页', '#top'], ['●', '关于', '#about'], ['◆', '标签', '#tags'], ['▦', '分类', '#categories'], ['⌕', '搜索', '#search']];
+
+function Snow() {
+  return <div className="snow" aria-hidden="true">{snow.map((s, i) => <i key={i} style={{ left: s.left, width: s.size, height: s.size, animationDelay: s.delay, animationDuration: s.duration }} />)}</div>;
+}
+
+function Sidebar() {
+  return <aside className="next-sidebar">
+    <section className="side-card brand-panel">
+      <a href="#top" className="next-brand">YUCHENG-STAR</a>
+      <span>星光落在代码上</span>
+    </section>
+    <section className="side-card menu-panel">
+      <nav aria-label="博客导航">{nav.map(([icon, label, href]) => <a key={label} href={href}><b>{icon}</b>{label}</a>)}</nav>
+    </section>
+    <section className="side-card profile-panel" id="about">
+      <img src="https://avatars.githubusercontent.com/u/232412182?v=4" alt="YUCHENG-STAR" />
+      <strong>YUCHENG-STAR</strong><p>记录 AI、RAG 与工程实践</p>
+      <div className="site-stats"><a href="#articles"><b>1</b><span>日志</span></a><a href="#categories"><b>3</b><span>分类</span></a><a href="#tags"><b>5</b><span>标签</span></a></div>
+      <a className="github-link" href="https://github.com/YUCHENG-STAR" target="_blank" rel="noreferrer">● GitHub</a>
+    </section>
+    <section className="side-card side-note"><b>站点概览</b><p>欢迎来到我的数字花园。<br />保持好奇，慢慢生长。</p></section>
+  </aside>;
+}
 
 export default function Home() {
-  return (
-    <main className="site-shell">
-      <div className="aurora aurora-one" aria-hidden="true" />
-      <div className="aurora aurora-two" aria-hidden="true" />
-      <div className="stars" aria-hidden="true">
-        {stars.map((star, index) => <i key={index} style={{ left: star.left, top: star.top, animationDelay: star.delay, width: star.size, height: star.size }} />)}
+  return <main className="next-page" id="top"><Snow />
+    <div className="next-grid">
+      <div className="posts-column" id="articles">
+        <article className="post-paper featured-post">
+          <header><h1>从问题出发：理解检索增强生成的完整链路</h1><div className="post-meta"><span>▣ 发表于 2026-08-25</span><i /> <span>▤ 更新于 2026-08-25</span><i /> <span>▱ 分类于 <a href="#categories">RAG · 学习记录</a></span></div></header>
+          <div className="post-copy">
+            <blockquote><p><strong>version：</strong> v1.0 「2026.08.25」 第一版</p><p><strong>author：</strong> YUCHENG-STAR</p><p><strong>摘要：</strong> 从数据准备、文本分块、向量检索到答案生成，建立一张清晰的 RAG 系统地图。</p><p><strong>简介：</strong> 把 RAG 看作完整工程系统，而不是向量数据库与大模型的简单拼接。</p></blockquote>
+            <p>检索增强生成的核心，是先为问题找到可靠证据，再让模型围绕证据组织答案。本文会从一条端到端的数据链路开始，梳理每个环节的任务与边界。</p>
+            <a className="read-more" href="/posts/rag-basics/">阅读全文 »</a>
+          </div><footer><span>✦</span></footer>
+        </article>
+
+        <article className="post-paper" id="projects">
+          <header><h2>All-in-RAG：从理论到实践的 RAG 全栈指南</h2><div className="post-meta"><span>▣ 发表于 2026-08-25</span><i /> <span>▱ 分类于 项目</span></div></header>
+          <div className="post-copy"><blockquote><p><strong>项目：</strong> All-in-RAG</p><p><strong>方向：</strong> 检索增强生成 · 大模型应用开发</p></blockquote><p>面向大模型应用开发者的系统化学习项目，覆盖数据处理、索引构建、混合检索、多模态、评估与工程实践。</p><a className="read-more" href="https://github.com/YUCHENG-STAR/all-in-rag" target="_blank" rel="noreferrer">查看项目 »</a></div><footer><span>✦</span></footer>
+        </article>
+
+        <section className="post-paper taxonomy" id="tags"><h2>标签</h2><div><span>RAG</span><span>LLM</span><span>Python</span><span>检索</span><span>学习记录</span></div></section>
+        <section className="post-paper taxonomy" id="categories"><h2>分类</h2><div><span>AI 工程</span><span>项目实践</span><span>技术随笔</span></div></section>
+        <footer className="site-footer">© 2026 YUCHENG-STAR · Theme inspired by NexT.Pisces</footer>
       </div>
-
-      <header className="topbar">
-        <a className="brand" href="#top" aria-label="返回首页">YS<span>.</span></a>
-        <nav aria-label="主导航">
-          <a href="#articles">文章</a><a href="#projects">项目</a>
-          <a href="https://github.com/YUCHENG-STAR/YUCHENG-STAR.github.io/archive/refs/heads/main.zip">下载主题 ↓</a>
-          <a href="https://github.com/YUCHENG-STAR" target="_blank" rel="noreferrer">GitHub ↗</a>
-        </nav>
-      </header>
-
-      <div className="layout" id="top">
-        <section className="content-column">
-          <article className="glass hero-card" id="about">
-            <div className="eyebrow">HELLO · WORLD</div>
-            <div className="hero-grid">
-              <div>
-                <h1>你好，我是 <span>YUCHENG-STAR</span></h1>
-                <p className="lead">欢迎来到我的数字花园。这里记录 AI、RAG、工程实践，以及那些值得反复思考的技术问题。</p>
-                <div className="hero-actions">
-                  <a className="primary-button" href="https://github.com/YUCHENG-STAR/YUCHENG-STAR.github.io/archive/refs/heads/main.zip">下载主题 ↓</a>
-                  <a className="text-button" href="#articles">开始阅读 <span>→</span></a>
-                </div>
-              </div>
-              <div className="avatar-wrap">
-                <div className="avatar-glow" />
-                <img src="https://avatars.githubusercontent.com/u/232412182?v=4" alt="YUCHENG-STAR 的 GitHub 头像" />
-                <span className="online-dot" title="持续学习中" />
-              </div>
-            </div>
-            <div className="hero-stats" aria-label="博客概览">
-              <div><strong>01</strong><span>公开项目</span></div><div><strong>AI</strong><span>专注方向</span></div><div><strong>∞</strong><span>保持好奇</span></div>
-            </div>
-          </article>
-
-          <section className="section" id="articles">
-            <div className="section-heading"><div><span className="eyebrow">RECENT NOTES</span><h2>最近文章</h2></div><span>01 / 文章</span></div>
-            <a className="glass article-card" href="/posts/rag-basics">
-              <div className="article-number">01</div>
-              <div className="article-copy">
-                <div className="article-meta"><span>2026.08.25</span><span>RAG · 学习笔记</span><span>8 MIN</span></div>
-                <h3>从问题出发：理解检索增强生成的完整链路</h3>
-                <p>从数据准备、文本分块、向量检索到答案生成，建立一张清晰的 RAG 系统地图。</p>
-                <div className="tags"><span># RAG</span><span># LLM</span><span># Python</span></div>
-              </div><div className="arrow">↗</div>
-            </a>
-          </section>
-
-          <section className="section" id="projects">
-            <div className="section-heading"><div><span className="eyebrow">SELECTED WORK</span><h2>精选项目</h2></div><a href="https://github.com/YUCHENG-STAR?tab=repositories" target="_blank" rel="noreferrer">全部项目 ↗</a></div>
-            <a className="glass project-card" href="https://github.com/YUCHENG-STAR/all-in-rag" target="_blank" rel="noreferrer">
-              <div className="project-icon">R</div><div><span className="project-kicker">OPEN SOURCE · FEATURED</span><h3>All-in-RAG</h3>
-              <p>面向大模型应用开发者的 RAG 技术全栈指南，从理论到实践构建完整的检索增强生成体系。</p><div className="project-stack"><span>Python</span><span>RAG</span><span>LLM</span></div></div><span className="project-link">GitHub ↗</span>
-            </a>
-          </section>
-
-          <footer><span>© 2026 YUCHENG-STAR</span><span>Built with curiosity &amp; stardust.</span></footer>
-        </section>
-
-        <aside className="sidebar">
-          <section className="glass profile-card">
-            <div className="sidebar-cover"><span>YUCHENG</span><small>STAR</small></div>
-            <div className="sidebar-profile"><img src="https://avatars.githubusercontent.com/u/232412182?v=4" alt="" /><div><strong>YUCHENG-STAR</strong><span>AI · Engineering · Notes</span></div></div>
-            <nav className="side-nav" aria-label="侧边导航"><a href="#top"><span>⌂</span>首页</a><a href="#about"><span>◎</span>关于</a><a href="#articles"><span>◇</span>文章</a><a href="#projects"><span>⌘</span>项目</a><a href="https://github.com/YUCHENG-STAR/YUCHENG-STAR.github.io/archive/refs/heads/main.zip"><span>↓</span>下载主题</a></nav>
-          </section>
-          <section className="glass toc-card">
-            <div className="toc-header"><span>站点目录</span><small>CONTENTS</small></div>
-            {toc.map(([number, label], index) => <a key={number} href={['#about', '#articles', '#projects'][index]}><span>{number}</span>{label}</a>)}
-            <div className="toc-line" />
-          </section>
-          <p className="sidebar-note">夜空很大，慢慢写。<br />Keep building, keep wondering.</p>
-        </aside>
-      </div>
-    </main>
-  );
+      <Sidebar />
+    </div>
+  </main>;
 }
 
