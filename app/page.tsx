@@ -18,6 +18,7 @@ export default function Home() {
         <a className="brand" href="#top" aria-label="返回首页">YS<span>.</span></a>
         <nav aria-label="主导航">
           <a href="#articles">文章</a><a href="#projects">项目</a>
+          <a href="https://github.com/YUCHENG-STAR/YUCHENG-STAR.github.io/archive/refs/heads/main.zip">下载主题 ↓</a>
           <a href="https://github.com/YUCHENG-STAR" target="_blank" rel="noreferrer">GitHub ↗</a>
         </nav>
       </header>
@@ -31,8 +32,8 @@ export default function Home() {
                 <h1>你好，我是 <span>YUCHENG-STAR</span></h1>
                 <p className="lead">欢迎来到我的数字花园。这里记录 AI、RAG、工程实践，以及那些值得反复思考的技术问题。</p>
                 <div className="hero-actions">
-                  <a className="primary-button" href="#articles">开始阅读</a>
-                  <a className="text-button" href="https://github.com/YUCHENG-STAR" target="_blank" rel="noreferrer">查看 GitHub <span>↗</span></a>
+                  <a className="primary-button" href="https://github.com/YUCHENG-STAR/YUCHENG-STAR.github.io/archive/refs/heads/main.zip">下载主题 ↓</a>
+                  <a className="text-button" href="#articles">开始阅读 <span>→</span></a>
                 </div>
               </div>
               <div className="avatar-wrap">
@@ -74,7 +75,7 @@ export default function Home() {
           <section className="glass profile-card">
             <div className="sidebar-cover"><span>YUCHENG</span><small>STAR</small></div>
             <div className="sidebar-profile"><img src="https://avatars.githubusercontent.com/u/232412182?v=4" alt="" /><div><strong>YUCHENG-STAR</strong><span>AI · Engineering · Notes</span></div></div>
-            <nav className="side-nav" aria-label="侧边导航"><a href="#top"><span>⌂</span>首页</a><a href="#about"><span>◎</span>关于</a><a href="#articles"><span>◇</span>文章</a><a href="#projects"><span>⌘</span>项目</a></nav>
+            <nav className="side-nav" aria-label="侧边导航"><a href="#top"><span>⌂</span>首页</a><a href="#about"><span>◎</span>关于</a><a href="#articles"><span>◇</span>文章</a><a href="#projects"><span>⌘</span>项目</a><a href="https://github.com/YUCHENG-STAR/YUCHENG-STAR.github.io/archive/refs/heads/main.zip"><span>↓</span>下载主题</a></nav>
           </section>
           <section className="glass toc-card">
             <div className="toc-header"><span>站点目录</span><small>CONTENTS</small></div>
